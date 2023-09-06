@@ -134,7 +134,7 @@ function getBook(id) {
 
 // we install extension quokka.js
 
-const book = getBook(1);
+const book = getBook(2);
 book;
 
 // const title = book.title;
@@ -188,7 +188,6 @@ console.log(`The book has ${pagesRange} pages`);
 /* ####################   Arrow Functions    ####################### */
 
 // for longer funcions - function declaration
-
 /* function getYear(str) {
 	return str.split('-')[0];
 } */
@@ -196,3 +195,33 @@ console.log(`The book has ${pagesRange} pages`);
 /* // function expressions
 const getYear = str => str.split('-')[0];
 console.log(getYear(publicationDate)); */
+
+/* #################### Short-Circuiting And Logical Operators    ####################### */
+
+console.log(true && 'Some string'); // Some string
+console.log(false && 'Some string'); // false
+console.log(hasMovieAdaptation && 'This book has a movie');
+
+//truthy and falsy values
+// falsy: 0 , '', null, undefinded
+console.log('jonas' && 'Some String'); // Some String
+console.log(0 && 'Some string'); //0
+
+// or operator
+console.log(true || 'Some string'); // true
+console.log(false || 'Some string'); // Some string
+
+console.log(book.translations.spanish); // book 2 false so undefinded
+
+const spanishTranslation = book.translations.spanish || 'NOT TRANSLATED';
+spanishTranslation; // NOT TRANSLATED
+
+// this can also set wronge
+console.log(book.reviews.librarything.reviewsCount); // 0
+const countWrong = book.reviews.librarything.reviewsCount || 'no data';
+countWrong;
+
+// nulish operator  return the second value when first valuo is null or undefinded
+
+const count = book.reviews.librarything.reviewsCount ?? 'no data';
+count; // 0
