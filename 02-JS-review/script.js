@@ -229,10 +229,100 @@ count; // 0
 /* ##################### optional chaining operator ################  book(3) */
 
 function getTotalReviewCount(book) {
-	const goodread = book.reviews?.goodreads?.reviewsCount  || 0;
+	const goodread = book.reviews?.goodreads?.reviewsCount || 0;
 	const librarything = book.reviews?.librarything?.reviewsCount ?? 0;
 
 	return goodread + librarything;
 }
 
 console.log(getTotalReviewCount(book));
+
+/* ARRAY MAP METHOD
+zwraca nam nowa tablicę z pierwotnej tablicy zmodyfikowana przez nasza funkcje */
+
+const books = getBooks();
+
+console.log([1, 2, 3, 4, 5].map(el => el + 2)); //[ 3, 4, 5, 6, 7 ]
+
+const booksTitle = books.map(book => book.title);
+console.log(booksTitle); //[ 'The Lord of the Rings','Dune','Harry Potter and the Philosopher\'s Stone','A Game of Thrones' ]​​​​
+
+/* 
+const essantialData = books.map(book => {
+	return {
+		 title: book.title,
+		 author: book.author 
+		};
+}); */
+
+const essantialData = books.map(book => ({
+	title: book.title,
+	author: book.author,
+	reviewsCount: getTotalReviewCount(book),
+}));
+
+console.log(essantialData);
+
+/* FILTER METHOD if is true function return element */
+
+const longBooksWithMOvie = books.filter(book => book.pages > 500).filter(book => book.hasMovieAdaptation);
+console.log(longBooksWithMOvie);
+
+const adventureBooks = books.filter(book => book.genres.includes('adventure')).map(book => book.title);
+console.log(adventureBooks);
+
+/*  REDUCE METHOD most powerful of all methods in JS */
+
+const pagesAllBooks = books.reduce((sum, book) => sum + book.pages, 0);
+console.log(pagesAllBooks); //3227
+
+/*  SORT METHOD  overrite orginal array so we take a copy by slice */
+
+const x = [3, 6, 1, 9, 5];
+const sorted = x.slice().sort((a, b) => a - b);
+console.log(sorted); // [1,3,5,6,9]
+console.log(x); // [3,6,1,9,5]
+
+const sortedByPages = books.slice().sort((a, b) => b.pages - a.pages);
+console.log(sortedByPages);
+
+/* Working with immutable arrays */
+
+// 1) Add book object to array
+
+const newBook = {
+	id: 6,
+	title: 'Harry Potter and the Chamber of Secrets',
+	author: 'J. K. Rowling',
+};
+
+const booksAfterAdd = [...books, newBook];
+console.log(booksAfterAdd);
+
+// 2) Delete book object from array
+
+const booksAfterDelete = booksAfterAdd.filter(book => book.id !== 3);
+console.log(booksAfterDelete);
+
+// 3) Update book object in the array
+
+const booksAfterUpdate = booksAfterDelete.map(book => (book.id === 1 ? { ...book, pages: 1210 } : book));
+console.log(booksAfterUpdate);
+
+/*  ASYNCHRONOUS JAVASCRIPT */
+
+/* fetch('https://jsonplaceholder.typicode.com/todos') // Promise { <pending> }
+	.then(res => res.json())
+	.then(data => console.log(data));
+
+console.log('dawid'); */
+
+async function getTodos() {
+	const res = await fetch('https://jsonplaceholder.typicode.com/todos');
+	const data = await res.json();
+	console.log(data);
+
+	return data;
+}
+const todos = await getTodos();
+console.log(todos);
