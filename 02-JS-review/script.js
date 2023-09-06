@@ -130,7 +130,8 @@ function getBook(id) {
 	return data.find(d => d.id === id);
 }
 
-//Destructuring
+/* ####################     Destructuring      ####################### */
+
 // we install extension quokka.js
 
 const book = getBook(1);
@@ -139,7 +140,7 @@ book;
 // const title = book.title;
 // const author = book.author;
 
-// destructuring object
+/* ####################     Destructuring  Object    ####################### */
 const { title, author, pages, publicationDate, genres, hasMovieAdaptation } = book;
 
 console.log(author, title, genres);
@@ -147,15 +148,16 @@ console.log(author, title, genres);
 // const primaryGenre = genres[0];
 // const secondaryGenre = genres[1];
 
-//destructuring array with rest operator, always place it at end of destructuring
+/* ######    Destructuring array with rest operator, always place it at end of destructuring    ###### */
 const [primaryGenre, secondaryGenre, ...otherGenres] = genres;
 console.log(primaryGenre, secondaryGenre, otherGenres);
 
-// spread operator with array, it take all values from array and put them one  by one
+/* ###################   spread operator with array    ####################### */
+
 const newGenres = ['romance', ...genres, 'epic fantasy'];
 newGenres;
 
-// spread operator with objects
+/* ####################    Spread operator with objects    ####################### */
 
 const updatedBook = {
 	...book,
@@ -166,10 +168,16 @@ const updatedBook = {
 };
 updatedBook;
 
-//template literals
+/* ####################   Template Literals  ####################### */
+
 const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${
 	publicationDate.split('-')[0]
-}`;
+}. The book has ${hasMovieAdaptation ? '' : 'not'} been adapted as a movie`;
 summary;
 
+/* ####################   Ternary operator Instead of if/else Statements    ####################### */
 
+const pagesRange = pages > 1000 ? 'over a thousand ' : 'less then 1000';
+pagesRange;
+
+console.log(`The book has ${pagesRange} pages`);
