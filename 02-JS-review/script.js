@@ -134,7 +134,7 @@ function getBook(id) {
 
 // we install extension quokka.js
 
-const book = getBook(2);
+const book = getBook(3);
 book;
 
 // const title = book.title;
@@ -217,11 +217,22 @@ const spanishTranslation = book.translations.spanish || 'NOT TRANSLATED';
 spanishTranslation; // NOT TRANSLATED
 
 // this can also set wronge
-console.log(book.reviews.librarything.reviewsCount); // 0
-const countWrong = book.reviews.librarything.reviewsCount || 'no data';
+console.log(book.reviews?.librarything?.reviewsCount); // 0
+const countWrong = book.reviews?.librarything?.reviewsCount || 'no data';
 countWrong;
 
 // nulish operator  return the second value when first valuo is null or undefinded
 
-const count = book.reviews.librarything.reviewsCount ?? 'no data';
+const count = book.reviews?.librarything?.reviewsCount ?? 'no data';
 count; // 0
+
+/* ##################### optional chaining operator ################  book(3) */
+
+function getTotalReviewCount(book) {
+	const goodread = book.reviews?.goodreads?.reviewsCount  || 0;
+	const librarything = book.reviews?.librarything?.reviewsCount ?? 0;
+
+	return goodread + librarything;
+}
+
+console.log(getTotalReviewCount(book));
