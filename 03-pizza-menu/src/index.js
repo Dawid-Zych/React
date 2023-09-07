@@ -5,13 +5,32 @@ import pizzaData from '../src/data.js';
 function App() {
 	return (
 		<div>
-			<h2>Hello React!</h2>
+			<Header />
+			<Menu />
+			<Footer />
+		</div>
+	);
+}
+
+function Header() {
+	return <h1>Fast React Pizza Co.</h1>;
+}
+
+function Menu() {
+	return (
+		<div>
+			<h2>Our menu</h2>
 			<Pizza />
 			<Pizza />
 			<Pizza />
 			<Pizza />
 		</div>
 	);
+}
+
+function Footer() {
+	// return React.createElement('footer', null, "We're currently open!");
+	return <footer>{new Date().toLocaleTimeString()}. We're currently open!</footer>;
 }
 
 function Pizza() {
