@@ -1,8 +1,11 @@
 export default function App() {
 	const messages = ['Learn React ⚛️', 'Apply for jobs 💼', 'Invest your new income 🤑'];
 
-	const step = 2;
+	let step = 1;
 
+	function handlePreviouse() {}
+	function handleNext() {}
+	console.log(step);
 	return (
 		<div className='steps'>
 			<div className='numbers'>
@@ -16,8 +19,12 @@ export default function App() {
 			</p>
 
 			<div className='buttons'>
-				<button style={{ backgroundColor: '#7950f2', color: '#fff' }}>Previous</button>
-				<button style={{ backgroundColor: '#7950f2', color: '#fff' }}>Next</button>
+				<button style={{ backgroundColor: '#7950f2', color: '#fff' }} onClick={handlePreviouse}>
+					Previous
+				</button>
+				<button style={{ backgroundColor: '#7950f2', color: '#fff' }} onClick={handleNext}>
+					Next
+				</button>
 			</div>
 		</div>
 	);
