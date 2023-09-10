@@ -109,7 +109,9 @@ input {
 	justify-content: center;
 	align-content: start;
 }
-
+.list ul::-webkit-scrollbar {
+	display: none;
+}
 .list li {
 	display: flex;
 	align-items: center;
