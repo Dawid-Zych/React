@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import Item from './Item.js';
 
-export default function PackingList({ items, onDeleteItem, onToggleItem }) {
+export default function PackingList({ items, onDeleteItem, onToggleItem, onClearList }) {
 	const [sortBy, setSortBy] = useState('input');
 
 	let sortedItems;
@@ -17,25 +18,14 @@ export default function PackingList({ items, onDeleteItem, onToggleItem }) {
 				))}
 			</ul>
 
-			<div className='action'>
+			<div className='actions'>
 				<select value={sortBy} onChange={e => setSortBy(e.target.value)}>
 					<option value='input'>Sort by input order</option>
 					<option value='description'>Sort by description</option>
 					<option value='packed'>Sort by packed status</option>
 				</select>
+				<button onClick={onClearList}>Clear list</button>
 			</div>
 		</div>
-	);
-}
-
-function Item({ item, onDeleteItem, onToggleItem }) {
-	return (
-		<li>
-			<input type='checkbox' value={item.packed} onChange={() => onToggleItem(item.id)} />
-			<span style={item.packed ? { textDecoration: 'line-through' } : {}}>
-				{item.quantity} {item.description}
-			</span>
-			<button onClick={() => onDeleteItem(item.id)}>❌</button>
-		</li>
 	);
 }

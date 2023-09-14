@@ -75,6 +75,14 @@ input {
 .add-form button {
 	text-transform: uppercase;
 	background-color: #76c7ad;
+	transition: background-color 0.5s;
+}
+.add-form button:hover {
+	background-color: #4b8875;
+}
+
+.add-form button:active {
+	transform: translateY(2px);
 }
 
 .list {

@@ -1,7 +1,7 @@
-import Logo from './Components/Logo.js';
-import Form from './Components/Form.js';
-import Stats from './Components/Stats.js';
-import PackingList from './Components/PackingList.js';
+import Logo from './Logo.js';
+import Form from './Form.js';
+import Stats from './Stats.js';
+import PackingList from './PackingList.js';
 import { useState } from 'react';
 
 export default function App() {
@@ -24,11 +24,22 @@ export default function App() {
 		setItems(items => items.map(item => (item.id === id ? { ...item, packed: !item.packed } : item)));
 	}
 
+	function handleClearList() {
+		const confirmed = window.confirm('Are you sure want to delete all items?');
+
+		if (confirmed) setItems([]);
+	}
+
 	return (
 		<div className='app'>
 			<Logo />
 			<Form onAddItems={handleAddItems} />
-			<PackingList items={items} onDeleteItem={handleDeleteItem} onToggleItem={handleToggleItem} />
+			<PackingList
+				items={items}
+				onDeleteItem={handleDeleteItem}
+				onToggleItem={handleToggleItem}
+				onClearList={handleClearList}
+			/>
 			<Stats items={items} />
 		</div>
 	);
