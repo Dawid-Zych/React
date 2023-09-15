@@ -12,11 +12,11 @@ export default function FormAddFriend({ onAddFriend }) {
 		const id = crypto.randomUUID();
 		const newFriend = {
 			name,
-			image: `${image}?=${id}`,
+			image: `${image}?u=${id}`,
 			balance: 0,
 			id,
 		};
-
+		console.log(newFriend);
 		onAddFriend(newFriend);
 
 		setImage('https://i.pravatar.cc/48');
