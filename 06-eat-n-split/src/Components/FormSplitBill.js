@@ -9,7 +9,7 @@ export default function FormSplitBill({ selectedFriend, onSplitBill }) {
 	const paidByFriend = bill ? bill - paidByUser : '';
 	function handleSubmit(e) {
 		e.preventDefault();
-
+		if (bill < paidByUser) return;
 		if (!bill || !paidByUser) return;
 		onSplitBill(whoIsPaying === 'user' ? paidByFriend : -paidByUser);
 	}
@@ -19,12 +19,7 @@ export default function FormSplitBill({ selectedFriend, onSplitBill }) {
 			<h2>Split a bill with {selectedFriend.name}</h2>
 
 			<label>💰 Bill value</label>
-			<input
-				type='text'
-				value={bill}
-				onChange={e =>
-					setBill(Number(e.target.value) < paidByUser ? paidByUser : Number(e.target.value))
-				}></input>
+			<input type='text' value={bill} onChange={e => setBill(Number(e.target.value))}></input>
 
 			<label>🧍‍♀️ Your expanse</label>
 			<input
