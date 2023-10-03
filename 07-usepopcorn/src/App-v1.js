@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 const tempMovieData = [
 	{
@@ -43,18 +43,10 @@ const tempWatchedData = [
 ];
 
 const average = arr => arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
-const KEY = '509f2c9c';
 
 export default function App() {
-	const [movies, setMovies] = useState([]);
-	const [watched, setWatched] = useState([]);
-
-	useEffect(function () {
-		fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=interstellar`)
-			.then(res => res.json())
-			.then(data => setMovies(data.Search));
-	}, []);
-	// pusta tablica mowi ze useEffect będzie wykonane gdy komponent będzie 1 raz zamontowany
+	const [movies, setMovies] = useState(tempMovieData);
+	const [watched, setWatched] = useState(tempWatchedData);
 
 	return (
 		<>
