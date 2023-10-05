@@ -50,7 +50,7 @@ export default function App() {
 	const [movies, setMovies] = useState([]);
 	const [watched, setWatched] = useState([]);
 	const [isLoading, setIsLoading] = useState(false);
-	const [query, setQuery] = useState('');
+	const [query, setQuery] = useState('inception');
 	const [error, setError] = useState('');
 	const [selectedId, setSelectedId] = useState(null);
 
@@ -289,6 +289,19 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched }) {
 			getMovieDetails();
 		},
 		[selectedId]
+	);
+
+	useEffect(
+		function () {
+			if (!title) return;
+			document.title = `MOVIE | ${title}`;
+
+			return function () {
+				document.title = 'usePopcorn';
+				console.log(`Clean up effect for movie ${title}`);
+			};
+		},
+		[title]
 	);
 
 	return (
