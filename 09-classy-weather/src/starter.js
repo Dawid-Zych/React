@@ -53,4 +53,4 @@ async function getWeather(location) {
 	}
 }
 
-export { getWeather, formatDay, getWeatherIcon };
+export { getWeather, formatDay, getWeatherIcon, convertToFlag };
