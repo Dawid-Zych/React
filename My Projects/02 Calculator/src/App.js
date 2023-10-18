@@ -48,6 +48,7 @@ function App() {
 	function equalsClickHandler(e) {
 		if (result) return;
 		setMemory(() => memory + number + e);
+		// eslint-disable-next-line no-eval
 		let calculate = eval(memory + number);
 		setResult(calculate);
 		setNumber('');

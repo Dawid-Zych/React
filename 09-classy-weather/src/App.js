@@ -53,7 +53,6 @@ export default function App() {
 					// 1) Getting location (geocoding)
 					const geoRes = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${location}`);
 					const geoData = await geoRes.json();
-					console.log(geoData);
 
 					if (!geoData.results) throw new Error('Location not found');
 
@@ -98,7 +97,6 @@ function Input({ location, onChangeLocation }) {
 
 				if (e.code === 'Enter') {
 					inputEl.current.focus();
-					onChangeLocation('');
 				}
 			}
 
@@ -143,7 +141,7 @@ function Weather({ weather, location }) {
 
 function Day({ date, max, min, code, isToday }) {
 	return (
-		<li className='day'>
+		<li className={isToday ? 'day  important' : 'day'}>
 			<span>{getWeatherIcon(code)}</span>
 			<p>{isToday ? 'Today' : formatDay(date)}</p>
 			<p>
