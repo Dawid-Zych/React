@@ -1,6 +1,13 @@
+import Options from './Options';
 function Questions({ questions }) {
-	console.log(questions.question);
-	return <div></div>;
+	const { question, options, currenctOption, poins } = questions;
+	console.log(question);
+	return (
+		<div>
+			<h4>{question}</h4>
+			<Options options={options} />
+		</div>
+	);
 }
 
 export default Questions;
