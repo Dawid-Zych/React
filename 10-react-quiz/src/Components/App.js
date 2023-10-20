@@ -6,6 +6,7 @@ import Main from './Main';
 import StartScreen from './StartScreen';
 import Questions from './Questions';
 import NextButton from './NextButton';
+import Progress from './Progress';
 
 const initialState = {
 	questions: [],
@@ -59,6 +60,7 @@ export default function App() {
 	const [{ questions, status, index, answer, points }, dispatch] = useReducer(reducer, initialState);
 
 	const numQuestions = questions.length;
+	const maxPossiblePoints = questions.reduce((prev, curr) => prev + curr.points, 0);
 
 	// instalujemy json-server
 	/* useEffect(function () {
@@ -90,6 +92,13 @@ export default function App() {
 				{status === 'ready' && <StartScreen numQuestions={numQuestions} dispatch={dispatch} />}
 				{status === 'active' && (
 					<>
+						<Progress
+							index={index}
+							points={points}
+							numQuestions={numQuestions}
+							maxPossiblePoints={maxPossiblePoints}
+							answer={answer}
+						/>
 						<Questions question={questions[index]} dispatch={dispatch} answer={answer} />
 						<NextButton dispatch={dispatch} answer={answer} />
 					</>
