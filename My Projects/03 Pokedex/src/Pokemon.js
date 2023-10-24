@@ -1,14 +1,7 @@
-import { useState, useEffect } from 'react';
-
-function Pokemon({ name, imgSrc, num, checked, dispatch }) {
-	const [isChecked, setIsChecked] = useState(false);
+function Pokemon({ name, imgSrc, num, checkboxes, dispatch }) {
 	const pokemonName = name.charAt(0).toUpperCase() + name.slice(1);
 	const urlParts = num.split('/');
 	const numPokemon = urlParts[urlParts.length - 2];
-
-	useEffect(() => {
-		setIsChecked(checked);
-	}, [checked]);
 
 	return (
 		<li>
@@ -20,13 +13,40 @@ function Pokemon({ name, imgSrc, num, checked, dispatch }) {
 				<label>
 					<input
 						type='checkbox'
-						checked={isChecked}
+						checked={checkboxes.checkbox1}
 						onChange={() => {
-							const newChecked = !isChecked;
-							setIsChecked(newChecked);
+							const newChecked = !checkboxes.checkbox1;
 							dispatch({
 								type: 'TOGGLE_CHECKBOX',
-								payload: { pokemonName: name, checked: newChecked },
+								payload: { pokemonName: name, checkbox: 'checkbox1', checked: newChecked },
+							});
+						}}
+					/>
+					Checkbox 1
+				</label>
+				<label>
+					<input
+						type='checkbox'
+						checked={checkboxes.checkbox2}
+						onChange={() => {
+							const newChecked = !checkboxes.checkbox2;
+							dispatch({
+								type: 'TOGGLE_CHECKBOX',
+								payload: { pokemonName: name, checkbox: 'checkbox2', checked: newChecked },
+							});
+						}}
+					/>
+					Checkbox 2
+				</label>
+				<label>
+					<input
+						type='checkbox'
+						checked={checkboxes.checkbox3}
+						onChange={() => {
+							const newChecked = !checkboxes.checkbox3;
+							dispatch({
+								type: 'TOGGLE_CHECKBOX',
+								payload: { pokemonName: name, checkbox: 'checkbox3', checked: newChecked },
 							});
 						}}
 					/>

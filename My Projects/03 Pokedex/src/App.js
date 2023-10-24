@@ -20,20 +20,20 @@ const regions = [
 ];
 
 const initialState = {
-	currentRegion: 'Kanto', // Domyślny region
+	currentRegion: '', // Domyślny region
 	displayedData: [], // Dane do wyświetlenia
 	checkboxState: {}, // Stan checkboxa
 };
 function reducer(state, action) {
 	switch (action.type) {
 		case 'SELECT_REGION':
-			// Filtruj dane zgodnie z wybranym regionem
-			const selectedRegion = regions.find(region => region.name === action.region);
+			// Filtr date with choosen Region
+			const selectedRegion = regions.find(region => region.name === action.payload);
 			if (selectedRegion) {
 				const filteredData = pokemonListData.slice(selectedRegion.start, selectedRegion.end);
 				return {
 					...state,
-					currentRegion: action.region,
+					currentRegion: action.payload,
 					displayedData: filteredData,
 				};
 			}
@@ -43,7 +43,20 @@ function reducer(state, action) {
 				...state,
 				checkboxState: {
 					...state.checkboxState,
-					[action.payload.pokemonName]: action.payload.checked,
+					[action.payload.pokemonName]: {
+						checkbox1:
+							action.payload.checkbox === 'checkbox1'
+								? action.payload.checked
+								: state.checkboxState[action.payload.pokemonName]?.checkbox1 || false,
+						checkbox2:
+							action.payload.checkbox === 'checkbox2'
+								? action.payload.checked
+								: state.checkboxState[action.payload.pokemonName]?.checkbox2 || false,
+						checkbox3:
+							action.payload.checkbox === 'checkbox3'
+								? action.payload.checked
+								: state.checkboxState[action.payload.pokemonName]?.checkbox3 || false,
+					},
 				},
 			};
 		default:
@@ -54,22 +67,12 @@ function reducer(state, action) {
 export default function App() {
 	const [pokeList, dispatch] = useReducer(reducer, initialState);
 
-	const handleRegionClick = region => {
-		// Obsługuje kliknięcie przycisku regionu
-		dispatch({ type: 'SELECT_REGION', region });
-	};
-
 	return (
 		<>
 			<Header />
 			<TabsBox>
 				{regions.map(reg => (
-					<Tab
-						name={reg.name}
-						generation={reg.gen}
-						key={reg.name}
-						onClick={() => handleRegionClick(reg.name)}
-					/>
+					<Tab name={reg.name} generation={reg.gen} key={reg.name} dispatch={dispatch} />
 				))}
 			</TabsBox>
 			<ul>
@@ -80,7 +83,13 @@ export default function App() {
 						name={pokemon.name}
 						imgSrc={pokemon.imageUrl}
 						num={pokemon.url}
-						checked={pokeList.checkboxState[pokemon.name] || false}
+						checkboxes={
+							pokeList.checkboxState[pokemon.name] || {
+								checkbox1: false,
+								checkbox2: false,
+								checkbox3: false,
+							}
+						}
 						dispatch={dispatch}
 					/>
 				))}
