@@ -1,5 +1,5 @@
-function TabsBox({ children }) {
-	return <div className='tabs'>{children}</div>;
+function TabsBox({ children, classname = '' }) {
+	return <ul className={classname}>{children}</ul>;
 }
 
 export default TabsBox;

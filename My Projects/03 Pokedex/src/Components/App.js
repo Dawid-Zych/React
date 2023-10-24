@@ -77,13 +77,12 @@ export default function App() {
 	return (
 		<>
 			<Header />
-			<TabsBox>
+			<TabsBox classname='tabs'>
 				{regions.map(reg => (
 					<Tab name={reg.name} generation={reg.gen} key={reg.name} dispatch={dispatch} />
 				))}
 			</TabsBox>
-			<ul>
-				{/* Wyświetl dane z aktualnie wybranego regionu */}
+			<TabsBox>
 				{pokeList.displayedData.map((pokemon, index) => (
 					<Pokemon
 						key={pokemon.name}
@@ -100,7 +99,7 @@ export default function App() {
 						dispatch={dispatch}
 					/>
 				))}
-			</ul>
+			</TabsBox>
 		</>
 	);
 }
