@@ -12,7 +12,7 @@ h2 {
 	justify-content: center;
 	align-items: center;
 }
-/* styles.css */
+
 ul {
 	list-style-type: none;
 	padding: 0;
@@ -40,14 +40,13 @@ img {
 p {
 	font-weight: bold;
 }
-/* Styl bazowy dla kontenera zakładek */
+
 .tabs {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
 }
 
-/* Styl przycisków zakładek */
 .tabs button {
 	background-color: #3498db;
 	color: #fff;
@@ -58,17 +57,14 @@ p {
 	margin: 5px;
 }
 
-/* Styl przycisków zakładek po najechaniu myszką */
 .tabs button:hover {
 	background-color: #2980b9;
 }
 
-/* Styl tekstu wewnątrz przycisków */
 .tabs button strong {
 	font-weight: bold;
 }
 
-/* Styl dodatkowego tekstu (gen) wewnątrz przycisków */
 .tabs button p {
 	font-size: 14px;
 	margin: 5px 0;
@@ -79,16 +75,27 @@ p {
 	align-items: center;
 }
 
-div button[type='checkbox'] {
+.pokemon-form label {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.pokemon-form input[type='checkbox'] {
 	width: 20px;
 	height: 20px;
 	margin: 5px;
 	background-color: #ccc; /* Kolor tła */
 	border: 1px solid #999; /* Kolor obramowania */
 	cursor: pointer;
+	z-index: 10;
 }
 
-div button[type='checkbox']:checked {
+.pokemon-form input[type='checkbox']:checked {
 	background-color: #3498db;
 	border: 1px solid #2980b9;
+}
+
+.pokemon-form img {
+	width: 20px;
+	height: 30px;
 }

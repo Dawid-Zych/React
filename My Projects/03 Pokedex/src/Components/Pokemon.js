@@ -1,14 +1,29 @@
+import React, { useState, useEffect } from 'react';
+
 function Pokemon({ name, imgSrc, num, checkboxes, dispatch }) {
+	const [isLoaded, setIsLoaded] = useState(false);
 	const pokemonName = name.charAt(0).toUpperCase() + name.slice(1);
 	const urlParts = num.split('/');
 	const numPokemon = urlParts[urlParts.length - 2];
 
+	useEffect(() => {
+		const image = new Image();
+		image.src = imgSrc;
+
+		image.onload = () => {
+			setIsLoaded(true);
+		};
+
+		image.onerror = () => {
+			setIsLoaded(true);
+		};
+	}, [imgSrc]);
 	return (
 		<li>
 			<p>
 				#{numPokemon} {pokemonName}
 			</p>
-			{imgSrc && <img src={imgSrc} alt={name} />}
+			{isLoaded ? <img src={imgSrc} alt={name} /> : <p>Loading...</p>}
 			<div className='pokemon-form'>
 				<label>
 					<input
@@ -22,7 +37,7 @@ function Pokemon({ name, imgSrc, num, checkboxes, dispatch }) {
 							});
 						}}
 					/>
-					Checkbox 1
+					<img src='pokeball.png' alt='normal form' title='normal form'></img>
 				</label>
 				<label>
 					<input
@@ -36,7 +51,7 @@ function Pokemon({ name, imgSrc, num, checkboxes, dispatch }) {
 							});
 						}}
 					/>
-					Checkbox 2
+					<img src='shadow.png' alt='shadow form' title='shadow form'></img>
 				</label>
 				<label>
 					<input
@@ -50,7 +65,7 @@ function Pokemon({ name, imgSrc, num, checkboxes, dispatch }) {
 							});
 						}}
 					/>
-					Checkbox 3
+					<img src='puryfied.png' alt='puryfied form' title='puryfied form'></img>
 				</label>
 			</div>
 		</li>
