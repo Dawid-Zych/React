@@ -7,6 +7,7 @@ import PageNotFount from './pages/PageNotFount';
 
 export default function App() {
 	return (
+    
 		<BrowserRouter>
 			<Routes>
 				<Route path='/' element={<Homepage />}></Route>
