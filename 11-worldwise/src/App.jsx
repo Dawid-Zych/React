@@ -4,16 +4,17 @@ import Homepage from './pages/Homepage';
 import Product from './pages/Product';
 import Pricing from './pages/Pricing';
 import PageNotFount from './pages/PageNotFount';
+import AppLeyout from './pages/AppLeyout';
 
 export default function App() {
 	return (
-    
 		<BrowserRouter>
 			<Routes>
 				<Route path='/' element={<Homepage />}></Route>
 				<Route path='product' element={<Product />}></Route>
 				<Route path='pricing' element={<Pricing />}></Route>
-        <Route path='*' element={<PageNotFount />}></Route>
+				<Route path='app' element={<AppLeyout />}></Route>
+				<Route path='*' element={<PageNotFount />}></Route>
 			</Routes>
 		</BrowserRouter>
 	);
