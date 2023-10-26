@@ -11,6 +11,7 @@ import Login from './pages/Login';
 import CityList from './components/AppNav/Sidebar/City/CityList';
 import CountryList from './components/AppNav/Sidebar/City/CountryList';
 import City from './components/AppNav/Sidebar/City/City';
+import Form from './components/AppNav/Sidebar/Form/Form';
 
 const BASE_URL = 'http://localhost:8000/cities';
 export default function App() {
@@ -43,7 +44,7 @@ export default function App() {
 					<Route path='cities' element={<CityList cities={cities} isLoading={isLoading} />} />
 					<Route path='cities/:id' element={<City />} />
 					<Route path='countries' element={<CountryList cities={cities} isLoading={isLoading} />} />
-					<Route path='form' element={<p>Form</p>} />
+					<Route path='form' element={<Form />} />
 				</Route>
 				<Route path='login' element={<Login />} />
 				<Route path='*' element={<PageNotFount />} />
