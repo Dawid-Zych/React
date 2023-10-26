@@ -1,5 +1,5 @@
 /* instalujemy nasz router npm i react-router-dom */
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 import Homepage from './pages/Homepage';
@@ -40,7 +40,7 @@ export default function App() {
 				<Route path='product' element={<Product />} />
 				<Route path='pricing' element={<Pricing />} />
 				<Route path='app' element={<AppLeyout />}>
-					<Route index element={<CityList cities={cities} isLoading={isLoading} />} />
+					<Route index element={<Navigate replace to='cities' />} />
 					<Route path='cities' element={<CityList cities={cities} isLoading={isLoading} />} />
 					<Route path='cities/:id' element={<City />} />
 					<Route path='countries' element={<CountryList cities={cities} isLoading={isLoading} />} />
