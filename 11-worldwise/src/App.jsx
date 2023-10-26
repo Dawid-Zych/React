@@ -1,5 +1,7 @@
 /* instalujemy nasz router npm i react-router-dom */
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+
 import Homepage from './pages/Homepage';
 import Product from './pages/Product';
 import Pricing from './pages/Pricing';
@@ -7,7 +9,7 @@ import PageNotFount from './pages/PageNotFount';
 import AppLeyout from './pages/AppLayout';
 import Login from './pages/Login';
 import CityList from './components/AppNav/Sidebar/City/CityList';
-import { useEffect, useState } from 'react';
+import CountryList from './components/AppNav/Sidebar/City/CountryList';
 
 const BASE_URL = 'http://localhost:8000/cities';
 export default function App() {
@@ -38,7 +40,7 @@ export default function App() {
 				<Route path='app' element={<AppLeyout />}>
 					<Route index element={<CityList cities={cities} isLoading={isLoading} />} />
 					<Route path='cities' element={<CityList cities={cities} isLoading={isLoading} />} />
-					<Route path='countries' element={<p>Countries</p>} />
+					<Route path='countries' element={<CountryList cities={cities} isLoading={isLoading} />} />
 					<Route path='form' element={<p>Form</p>} />
 				</Route>
 				<Route path='login' element={<Login />} />
