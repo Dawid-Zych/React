@@ -1,14 +1,8 @@
 import styles from './CountryList.module.css';
 import Spinner from './Spinner/Spinner';
 import CountryItem from './CountryItem';
-import PropTypes from 'prop-types';
 import Message from '../Message/Message';
 import { useCities } from '../../../../../contexts/CitiesContext';
-
-CountryList.propTypes = {
-	cities: PropTypes.array,
-	isLoading: PropTypes.bool,
-};
 
 function CountryList() {
 	const { cities, isLoading } = useCities();
