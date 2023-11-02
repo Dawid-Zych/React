@@ -5,7 +5,7 @@ import { CitiesProvider } from './contexts/CitiesContext';
 import Homepage from './pages/Homepage';
 import Product from './pages/Product';
 import Pricing from './pages/Pricing';
-import PageNotFount from './pages/PageNotFount';
+import PageNotFound from './pages/PageNotFound';
 import AppLeyout from './pages/AppLayout';
 import Login from './pages/Login';
 import CityList from './components/CityList';
@@ -29,7 +29,7 @@ export default function App() {
 						<Route path='form' element={<Form />} />
 					</Route>
 					<Route path='login' element={<Login />} />
-					<Route path='*' element={<PageNotFount />} />
+					<Route path='*' element={<PageNotFound />} />
 				</Routes>
 			</BrowserRouter>
 		</CitiesProvider>
