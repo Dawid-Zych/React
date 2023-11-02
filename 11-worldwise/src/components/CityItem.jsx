@@ -19,14 +19,19 @@ function CityItem({ city }) {
 			date: PropTypes.string,
 			notes: PropTypes.string,
 			position: PropTypes.shape({
-				lat: PropTypes.number,
-				lng: PropTypes.number,
+				lat: PropTypes.any,
+				lng: PropTypes.any,
 			}),
 			id: PropTypes.number,
 		}),
 	};
-	const { currentCity } = useCities();
+	const { currentCity, deleteCity } = useCities();
 	const { cityName, emoji, date, id, position } = city;
+
+	function handleClick(e) {
+		e.preventDefault();
+		deleteCity(id);
+	}
 	return (
 		<li>
 			<Link
@@ -37,7 +42,9 @@ function CityItem({ city }) {
 				<span className={styles.emoji}>{emoji}</span>
 				<h3 className={styles.name}>{cityName}</h3>
 				<time className={styles.date}>{formatDate(date)}</time>
-				<button className={styles.deleteBtn}>&times;</button>
+				<button className={styles.deleteBtn} onClick={handleClick}>
+					&times;
+				</button>
 			</Link>
 		</li>
 	);
