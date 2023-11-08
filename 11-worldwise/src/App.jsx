@@ -1,13 +1,13 @@
 /* instalujemy nasz router npm i react-router-dom */
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-
 import { CitiesProvider } from './contexts/CitiesContext';
-import Homepage from './pages/Homepage';
+
 import Product from './pages/Product';
 import Pricing from './pages/Pricing';
-import PageNotFound from './pages/PageNotFound';
-import AppLeyout from './pages/AppLayout';
+import Homepage from './pages/Homepage';
 import Login from './pages/Login';
+import AppLeyout from './pages/AppLayout';
+import PageNotFound from './pages/PageNotFound';
 import CityList from './components/CityList';
 import CountryList from './components/CountryList';
 import City from './components/City';
