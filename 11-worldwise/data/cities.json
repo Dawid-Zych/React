@@ -1,16 +1,52 @@
 {
   "cities": [
     {
-      "cityName": "Villafeliche",
+      "cityName": "Lisbon",
+      "country": "Portugal",
+      "emoji": "🇵🇹",
+      "date": "2027-10-31T15:59:59.138Z",
+      "notes": "My favorite city so far!",
+      "position": {
+        "lat": 38.727881642324164,
+        "lng": -9.140900099907554
+      },
+      "id": 73930385
+    },
+    {
+      "cityName": "Nijar",
       "country": "Spain",
       "emoji": "🇪🇸",
-      "date": "2023-11-02T15:37:26.561Z",
+      "date": "2023-04-03T07:47:59.202Z",
       "notes": "",
       "position": {
-        "lat": "41.178653972331674",
-        "lng": "-1.4941406250000002"
+        "lat": "36.967508314568164",
+        "lng": "-2.13128394200588"
       },
-      "id": 1
+      "id": 98443198
+    },
+    {
+      "cityName": "Viana do Alentejo",
+      "country": "Portugal",
+      "emoji": "🇵🇹",
+      "date": "2023-11-08T17:54:07.389Z",
+      "notes": "",
+      "position": {
+        "lat": "38.42777351132902",
+        "lng": "-8.195800781250002"
+      },
+      "id": 98443199
+    },
+    {
+      "cityName": "Peralta de Alcofea",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2023-11-08T18:04:35.327Z",
+      "notes": "",
+      "position": {
+        "lat": "41.85319643776675",
+        "lng": "-0.0439453125"
+      },
+      "id": 98443200
     }
   ]
 }
