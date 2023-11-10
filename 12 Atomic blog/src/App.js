@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { faker } from '@faker-js/faker';
 import { PostProvider, usePosts } from './PostContext';
-import Test from './Test';
+
 function createRandomPost() {
 	return {
 		title: `${faker.hacker.adjective()} ${faker.hacker.noun()}`,
@@ -10,9 +10,18 @@ function createRandomPost() {
 }
 
 function App() {
+	const [isFakeDark, setIsFakeDark] = useState(false);
+	useEffect(
+		function () {
+			document.documentElement.classList[isFakeDark ? 'add' : 'remove']('fake-dark-mode');
+		},
+		[isFakeDark]
+	);
 	return (
 		<section>
-			<Button />
+			<button onClick={() => setIsFakeDark(isFakeDark => !isFakeDark)} className='btn-fake-dark-mode'>
+				{isFakeDark ? '☀️' : '🌙'}
+			</button>
 			<PostProvider>
 				<Header />
 				<Main />
@@ -23,12 +32,12 @@ function App() {
 	);
 }
 
-function Button() {
+/* function Button() {
 	const [isFakeDark, setIsFakeDark] = useState(false);
 
 	useEffect(
 		function () {
-			document.documentElement.classList.toggle('fake-dark-mode');
+			document.documentElement.classList[isFakeDark ? 'add' : 'remove']('fake-dark-mode');
 		},
 		[isFakeDark]
 	);
@@ -38,7 +47,7 @@ function Button() {
 			{isFakeDark ? '☀️' : '🌙'}
 		</button>
 	);
-}
+} */
 
 function Header() {
 	// 3) CONSUMING CONTEXT VALUE
@@ -67,14 +76,14 @@ function Results() {
 	return <p>🚀 {posts.length} atomic posts found</p>;
 }
 
-function Main() {
+const Main = memo(function Main() {
 	return (
 		<main>
 			<FormAddPost />
 			<Posts />
 		</main>
 	);
-}
+});
 
 function Posts() {
 	return (
@@ -119,7 +128,7 @@ function List() {
 					</li>
 				))}
 			</ul>
-		{/* 	<Test /> */}
+			{/* 	<Test /> */}
 		</>
 	);
 }
