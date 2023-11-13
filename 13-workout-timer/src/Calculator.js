@@ -9,21 +9,36 @@ function Calculator({ workouts, allowSound }) {
 
 	const [duration, setDuration] = useState(0);
 
+	// const playSound = useCallback(
+	// 	function () {
+	// 		if (!allowSound) return;
+	// 		const sound = new Audio(clickSound);
+	// 		sound.play();
+	// 	},
+	// 	[allowSound]
+	// );
+
 	// const duration = (number * sets * speed) / 60 + (sets - 1) * durationBreak;
 
 	useEffect(
-		() => setDuration((number * sets * speed) / 60 + (sets - 1) * durationBreak),
-		[sets, speed, number, durationBreak]
+		function () {
+			const playSound = function () {
+				if (!allowSound) return;
+				const sound = new Audio(clickSound);
+				sound.play();
+			};
+
+			playSound();
+		},
+		[duration, allowSound]
 	);
+
+	useEffect(() => {
+		setDuration((number * sets * speed) / 60 + (sets - 1) * durationBreak);
+	}, [sets, speed, number, durationBreak]);
 
 	const mins = Math.floor(duration);
 	const seconds = (duration - mins) * 60;
-
-	const playSound = function () {
-		if (!allowSound) return;
-		const sound = new Audio(clickSound);
-		sound.play();
-	};
 
 	function handleInc() {
 		setDuration(duration => Math.floor(duration) + 1);
@@ -32,7 +47,7 @@ function Calculator({ workouts, allowSound }) {
 	function handleDec() {
 		setDuration(duration => (duration > 1 ? Math.ceil(duration) - 1 : 0));
 	}
-  
+
 	return (
 		<>
 			<form>
