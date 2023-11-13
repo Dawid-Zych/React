@@ -2,8 +2,8 @@ import { useReducer, useEffect } from 'react';
 import pokemonListData from '../data/pokemonList.json';
 import regions from '../data/regions.json';
 import Header from './Header';
-import Tab from './Tab';
 import TabsBox from './TabsBox';
+import PokeListBox from './PokeListBox';
 import Pokemon from './Pokemon';
 
 const initialState = {
@@ -77,12 +77,8 @@ export default function App() {
 	return (
 		<>
 			<Header />
-			<TabsBox classname='tabs'>
-				{regions.map(reg => (
-					<Tab name={reg.name} generation={reg.gen} key={reg.name} dispatch={dispatch} />
-				))}
-			</TabsBox>
-			<TabsBox>
+			<TabsBox dispatch={dispatch} />
+			<PokeListBox>
 				{pokeList.displayedData.map((pokemon, index) => (
 					<Pokemon
 						key={pokemon.name}
@@ -99,7 +95,7 @@ export default function App() {
 						dispatch={dispatch}
 					/>
 				))}
-			</TabsBox>
+			</PokeListBox>
 		</>
 	);
 }

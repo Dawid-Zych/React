@@ -1,23 +1,39 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 function Pokemon({ name, imgSrc, num, checkboxes, dispatch }) {
 	const [isLoaded, setIsLoaded] = useState(false);
+	const [loadedImages, setLoadedImages] = useState([]);
 	const pokemonName = name.charAt(0).toUpperCase() + name.slice(1);
 	const urlParts = num.split('/');
 	const numPokemon = urlParts[urlParts.length - 2];
 
 	useEffect(() => {
-		const image = new Image();
-		image.src = imgSrc;
+		const cachedImage = loadedImages.find(image => image.src === imgSrc);
 
-		image.onload = () => {
+		if (cachedImage) {
+			// Jeśli obraz jest już w pamięci podręcznej, ustaw stan jako załadowany
 			setIsLoaded(true);
-		};
+		} else {
+			// W przeciwnym razie, ładowanie obrazu
+			const image = new Image();
+			image.src = imgSrc;
 
-		image.onerror = () => {
-			setIsLoaded(true);
-		};
-	}, [imgSrc]);
+			image.onload = () => {
+				setIsLoaded(true);
+				setLoadedImages(prevImages => [...prevImages, { src: imgSrc }]);
+			};
+
+			image.onerror = () => {
+				setIsLoaded(true);
+			};
+
+			return () => {
+				// Oczyść zasoby po odmontowaniu komponentu
+				image.onload = null;
+				image.onerror = null;
+			};
+		}
+	}, [imgSrc, loadedImages]);
 	return (
 		<li>
 			<p>
