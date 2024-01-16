@@ -22,6 +22,6 @@ export default connect(mapStateToProps) (BalanceDisplay);
 
 
 /* olD SCHOOL CONNECTING REDUX 
-connect(mapStateToProps) zwraca nowa fgunkcje
+connect(mapStateToProps) zwraca nowa funkcje
 
 */
